@@ -32,10 +32,23 @@ class _ExpensesState extends State<Expenses> {
         date: DateTime.now())
   ];
 
+  void _openAddExpenseOverlay(){
+
+    showModalBottomSheet(context: context, builder: (ctx)=>Text('Shreya'));
+
+//mon clicking backdrop this removes.
+  }
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-
+appBar: AppBar(
+  title: Text('Expense Tracker'),
+  actions: [
+    IconButton(icon:Icon(Icons.add), onPressed:_openAddExpenseOverlay,),
+    //used to display button in top of screen at the appBar
+  ],
+),
       body: Column(
          children:  [
           const Text('The chart'),

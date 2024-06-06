@@ -21,16 +21,16 @@ class ExpenseItem extends StatelessWidget {
               Row(
                 children: [
                   Text('${expense.amount.toStringAsFixed(2)}'),
-                  //asFixed means upto 2 laces the integer will be given
+                  //asFixed means upto 2 places the integer will be given
 
                   const Spacer(),
                 //Takes up all the space
                   //pushes text to left and row to right
                   Row(
                     children: [
-                      Icon(Icons.money),
-                      SizedBox(width: 8,),
-                      Text(expense.date.toString())
+                      Icon(categoryIcons[expense.category]),
+                      const SizedBox(width: 8,),
+                      Text(expense.formattedDate)
                     ],
                     
                   )
