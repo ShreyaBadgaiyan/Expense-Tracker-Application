@@ -1,3 +1,4 @@
+import 'package:expense_tracker/widgets/chart/chart.dart';
 import 'package:expense_tracker/widgets/expenses_list.dart';
 import 'package:expense_tracker/widgets/new_expense.dart';
 import 'package:flutter/material.dart';
@@ -67,6 +68,11 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+
+    final width=MediaQuery.of(context).size.width;
+    final height=MediaQuery.of(context).size.height;
+    //print(MediaQuery.of(context).size.width);
+
     Widget mainContent = const Center(
       child: Text('No expenses found, Start adding some!'),
     );
@@ -80,6 +86,7 @@ class _ExpensesState extends State<Expenses> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Expense Tracker'),
+        centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
@@ -88,13 +95,26 @@ class _ExpensesState extends State<Expenses> {
           //used to display button in top of screen at the appBar
         ],
       ),
-      body: Column(
+      body:
+      width<height?
+      Column(
         children: [
-          const Text('The chart'),
+         // const Text('The chart'),
+          Chart(expenses: _registeredExpenses),
           Expanded(child: mainContent)
           //When using list inside list, use expanded otherwise it wont be visible.
         ],
-      ),
+      ):
+
+      Row(
+        children: [
+          // const Text('The chart'),
+          Expanded(child: Chart(expenses: _registeredExpenses)),
+          Expanded(child: mainContent)
+          //When using list inside list, use expanded otherwise it wont be visible.
+        ],
+      )
+      ,
     );
   }
 }
